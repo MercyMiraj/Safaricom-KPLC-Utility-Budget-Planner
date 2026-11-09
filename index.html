@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerFlow | KPLC & Utility Budget Planner</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <i class="fa-solid fa-bolt-lightning logo-icon"></i>
+        <div>
+          <h1>PowerFlow Utility Planner</h1>
+          <p>KPLC Token Forecast, Meter Burn Rate & Monthly Bill Tracker</p>
+        </div>
+      </div>
+      <div class="date-badge" id="current-date"></div>
+    </header>
+
+    <!-- Summary Overview Cards -->
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span class="card-label">Current Token Units</span>
+        <h3 class="gold-text" id="stat-units">0.0 kWh</h3>
+      </div>
+      <div class="summary-card">
+        <span class="card-label">Daily Burn Rate</span>
+        <h3 class="danger-text" id="stat-burn">0.0 kWh / day</h3>
+      </div>
+      <div class="summary-card">
+        <span class="card-label">Estimated Days Left</span>
+        <h3 class="gold-text" id="stat-days">-- Days</h3>
+      </div>
+      <div class="summary-card">
+        <span class="card-label">Total Monthly Utilities</span>
+        <h3 class="success-text" id="stat-utilities">KES 0.00</h3>
+      </div>
+    </section>
+
+    <!-- KPLC Token Purchase Form -->
+    <section class="card">
+      <h2><i class="fa-solid fa-plug-circle-bolt"></i> Log KPLC Token Top-Up</h2>
+      <form id="token-form" class="form-grid">
+        <div class="input-group">
+          <label for="purchase-date">Purchase Date</label>
+          <input type="date" id="purchase-date" required>
+        </div>
+        <div class="input-group">
+          <label for="token-cost">Amount Spent (KES)</label>
+          <input type="number" id="token-cost" placeholder="e.g. 1000" step="0.01" required>
+        </div>
+        <div class="input-group">
+          <label for="token-units">Units Received (kWh)</label>
+          <input type="number" id="token-units" placeholder="e.g. 42.5" step="0.1" required>
+        </div>
+        <div class="input-group">
+          <label for="daily-avg">Est. Daily Use (kWh)</label>
+          <input type="number" id="daily-avg" placeholder="e.g. 3.5" step="0.1" required>
+        </div>
+        <button type="submit" class="btn btn-gold btn-full"><i class="fa-solid fa-calculator"></i> Record Top-Up & Calculate</button>
+      </form>
+    </section>
+
+    <!-- Other Monthly Utilities Form -->
+    <section class="card">
+      <h2><i class="fa-solid fa-file-invoice-dollar"></i> Add Monthly Household Utility</h2>
+      <form id="utility-form" class="form-grid">
+        <div class="input-group">
+          <label for="util-name">Utility Name</label>
+          <input type="text" id="util-name" placeholder="e.g. Safaricom Home Fibre, Water, Gas" required>
+        </div>
+        <div class="input-group">
+          <label for="util-category">Category</label>
+          <select id="util-category">
+            <option value="Internet">Internet (Fibre/WiFi)</option>
+            <option value="Water">Water Bill</option>
+            <option value="Cooking Gas">LPG Cooking Gas</option>
+            <option value="Garbage/Rates">Garbage / Service Charge</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="util-cost">Monthly Amount (KES)</label>
+          <input type="number" id="util-cost" placeholder="e.g. 2999" step="0.01" required>
+        </div>
+        <div class="input-group">
+          <label for="util-due">Due Date</label>
+          <input type="date" id="util-due" required>
+        </div>
+        <button type="submit" class="btn btn-gold btn-full"><i class="fa-solid fa-plus"></i> Save Utility Bill</button>
+      </form>
+    </section>
+
+    <!-- Utilities & Token History Tables -->
+    <section class="card">
+      <div class="flex-between">
+        <h2><i class="fa-solid fa-list-check"></i> Monthly Utility Budget Breakdown</h2>
+        <button class="btn btn-outline" id="reset-utility-btn"><i class="fa-solid fa-trash"></i> Reset All Data</button>
+      </div>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Utility</th>
+              <th>Category</th>
+              <th>Due Date</th>
+              <th>Monthly Cost</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="utility-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>PowerFlow Platform | KPLC & Kenyan Household Utility Budgeting</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
